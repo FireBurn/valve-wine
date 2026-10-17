@@ -41,6 +41,8 @@ static const struct user_driver_funcs waylanddrv_funcs =
     .pDestroyWindow = WAYLAND_DestroyWindow,
     .pSetIMECompositionRect = WAYLAND_SetIMECompositionRect,
     .pKbdLayerDescriptor = WAYLAND_KbdLayerDescriptor,
+    .pNotifyIcon = WAYLAND_NotifyIcon,
+    .pCleanupIcons = WAYLAND_CleanupIcons,
     .pReleaseKbdTables = WAYLAND_ReleaseKbdTables,
     .pSetCursor = WAYLAND_SetCursor,
     .pSetCursorPos = WAYLAND_SetCursorPos,
@@ -127,6 +129,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
     waylanddrv_unix_init,
     waylanddrv_unix_read_events,
     waylanddrv_unix_init_clipboard,
+    waylanddrv_unix_systray_run,
 };
 
 C_ASSERT(ARRAYSIZE(__wine_unix_call_funcs) == waylanddrv_unix_func_count);
@@ -138,6 +141,7 @@ const unixlib_entry_t __wine_unix_call_wow64_funcs[] =
     waylanddrv_unix_init,
     waylanddrv_unix_read_events,
     waylanddrv_unix_init_clipboard,
+    waylanddrv_unix_systray_run,
 };
 
 C_ASSERT(ARRAYSIZE(__wine_unix_call_wow64_funcs) == waylanddrv_unix_func_count);
